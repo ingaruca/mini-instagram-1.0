@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Login</string>
+    <string name="login_name">Mini Instagram</string>
+    <string name="login_usuario">Usuario</string>
+    <string name="login_contraseña">Contraseña</string>
+    <string name="btn_iniciarsesion">Iniciar Sesion</string>
+    <string name="login_usuarionuevo">Usuario Nuevo?</string>
+    <string name="btn_registrarte">Regitrarse</string>
+    <string name="registro_repetircontraseña">Repetir Contraseña</string>
+    <string name="title_activity_listado">Listado</string>
+    <string name="persona.hint.nombre">Nombre</string>
+    <string name="persona.hint.orden">Orden</string>
+</resources>
