@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import OpenHelper.Sqlite_OpenHelper;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -21,10 +22,17 @@ public class Listado extends AppCompatActivity {
     @BindView(R.id.containerMain)
     CoordinatorLayout containerMain;
 
+    RecyclerView lvListado;
+
+    Sqlite_OpenHelper helper = new Sqlite_OpenHelper(this,"MiniInstagram",null,1);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listado);
+
+        lvListado = (RecyclerView)findViewById(R.id.lvListado);
+
         ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

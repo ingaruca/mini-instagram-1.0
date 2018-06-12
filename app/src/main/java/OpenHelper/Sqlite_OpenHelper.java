@@ -1,8 +1,10 @@
-package com.example.aaron.mini_instagram.OpenHelper;
+package OpenHelper;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class Sqlite_OpenHelper extends SQLiteOpenHelper {
@@ -15,7 +17,7 @@ public class Sqlite_OpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String query = "create table usuario(_Id Integer primary key autoincrement,Correo text,Contraseña1 text,Contraseña2 text);";
+        String query = "create table usuario(_Id Integer primary key autoincrement,Correo text,Contraseña text)";
 
         db.execSQL(query);
 
@@ -36,16 +38,19 @@ public class Sqlite_OpenHelper extends SQLiteOpenHelper {
         this.close();
     }
 
-    public void insertarRegistro(String Correo,String Contraseña1,String Contraseña2)
+    public void insertarRegistro(String Correo,String Contraseña)
     {
         ContentValues datosingresados = new ContentValues();
         datosingresados.put("Correo",Correo);
-        datosingresados.put("Contraseña1",Contraseña1);
-        datosingresados.put("Contraseña2",Contraseña2);
+        datosingresados.put("Contraseña",Contraseña);
         this.getWritableDatabase().insert("usuario",null,datosingresados);
     }
 
-
-
-
+    public Cursor Consultar(String correo, String contraseña) throws SQLiteException
+    {
+        Cursor mcursor = null;
+        mcursor = this.getReadableDatabase().query("usuarios",new String[]{"_Id","Correo","Contraseña"},"Correo like'"+correo+"'" +
+                "and Contraseña like'"+contraseña +"'",null, null,null, null);
+        return mcursor;
+    }
 }
